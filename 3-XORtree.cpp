@@ -59,46 +59,39 @@ Node* XOR(Node* a, Node* b) {
 	return reinterpret_cast<Node*>(reinterpret_cast<uintptr_t>(a) ^ reinterpret_cast<uintptr_t>(b));
 }
 
-// Function to insert a new node into the tree
-void insert(Node*& root, int data) {
-}
-
-// Function to traverse the tree in inorder fashion using XOR traversal
 void inorder(Node* root) {
-	Node* parent = nullptr;
-	Node* current = root;
-	bool canGoLeft = true;
-	while (current != nullptr) {
-		if (canGoLeft and XOR(current->leftChildXORparent, parent) != nullptr) {
-			Node* prevParent = parent;
-			parent = current;
-			current = XOR(current->leftChildXORparent, prevParent);
-		} else {
-			cout << current->data << endl;
-			if (XOR(current->rightChildXORparent, parent) != nullptr) {
-				Node* prevParent = parent;
-				parent = current;
-				current = XOR(current->rightChildXORparent, prevParent);
-				canGoLeft = true;
-			} else {  // if (XOR(current->leftChildXORparent, parent) == nullptr and XOR(current->rightChildXORparent, parent) == nullptr) {
-				canGoLeft = false;
-				Node* prevCurrent = current;
-				current = parent;
-				parent = XOR(current->leftChildXORparent, prevCurrent);
-			}
-		}
-	}
+	// this is all i could do, not enough but
+	// implemetaion left as an exercise for a smarter me
+	// keep working hard, its not too far
 }
 
 int main() {
 	Node* root = new Node(0);
-	insert(root, 7);
-	insert(root, 1);
-	insert(root, 2);
-	insert(root, 3);
-	insert(root, 4);
-	insert(root, 5);
-	insert(root, 6);
+	Node* one = new Node(1);
+	Node* two = new Node(2);
+	Node* three = new Node(3);
+	Node* four = new Node(4);
+	Node* five = new Node(5);
+	Node* six = new Node(6);
+
+	root->leftChildXORparent = XOR(one, nullptr);
+	root->rightChildXORparent = XOR(nullptr, two);
+
+	one->leftChildXORparent = XOR(three, root);
+	one->rightChildXORparent = XOR(root, four);
+	two->leftChildXORparent = XOR(five, root);
+	two->rightChildXORparent = XOR(root, six);
+
+	three->leftChildXORparent = XOR(nullptr, one);
+	three->rightChildXORparent = XOR(one, nullptr);
+	four->leftChildXORparent = XOR(nullptr, one);
+	four->rightChildXORparent = XOR(one, nullptr);
+
+	five->leftChildXORparent = XOR(nullptr, two);
+	five->rightChildXORparent = XOR(two, nullptr);
+	six->leftChildXORparent = XOR(nullptr, two);
+	six->rightChildXORparent = XOR(two, nullptr);
+
 	inorder(root);
 	return 0;
 }
