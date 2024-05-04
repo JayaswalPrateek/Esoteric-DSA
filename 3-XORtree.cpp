@@ -60,7 +60,7 @@ Node* XOR(Node* a, Node* b) {
 }
 
 // Function to insert a new node into the tree
-void insert(Node** root, int data) {
+void insert(Node*& root, int data) {
 }
 
 // Function to traverse the tree in inorder fashion using XOR traversal
@@ -92,13 +92,13 @@ void inorder(Node* root) {
 
 int main() {
 	Node* root = new Node(0);
-	insert(&root, 1);
-	insert(&root, 2);
-	insert(&root, 3);
-	insert(&root, 4);
-	insert(&root, 5);
-	insert(&root, 6);
-	insert(&root, 7);
+	insert(root, 7);
+	insert(root, 1);
+	insert(root, 2);
+	insert(root, 3);
+	insert(root, 4);
+	insert(root, 5);
+	insert(root, 6);
 	inorder(root);
 	return 0;
 }
