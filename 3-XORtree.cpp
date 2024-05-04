@@ -75,19 +75,20 @@ void inorder(Node* root) {
 			current = XOR(current->leftChildXORparent, prevParent);
 		} else {
 			cout << current->data << endl;
-			if (XOR(current->leftChildXORparent, parent) == nullptr and XOR(current->rightChildXORparent, parent) == nullptr) {
-				canGoLeft = false;
-				Node* prevCurrent = current;
-				current = parent;
-				parent = XOR(current->leftChildXORparent, prevCurrent);
-			} else if (XOR(current->rightChildXORparent, parent) != nullptr) {
+			if (XOR(current->rightChildXORparent, parent) != nullptr) {
 				Node* prevParent = parent;
 				parent = current;
 				current = XOR(current->rightChildXORparent, prevParent);
 				canGoLeft = true;
+			} else {  // if (XOR(current->leftChildXORparent, parent) == nullptr and XOR(current->rightChildXORparent, parent) == nullptr) {
+				canGoLeft = false;
+				Node* prevCurrent = current;
+				current = parent;
+				parent = XOR(current->leftChildXORparent, prevCurrent);
 			}
 		}
 	}
+}
 }
 
 int main() {
