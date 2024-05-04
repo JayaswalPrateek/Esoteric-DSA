@@ -89,7 +89,6 @@ void inorder(Node* root) {
 		}
 	}
 }
-}
 
 int main() {
 	Node* root = new Node(0);
